@@ -7,12 +7,11 @@ public class MyHT {
 
     private Integer number; // preferably a prime number
     private Node[] elements;
-    private Integer size;
+    public Node[] getElements(){return elements;}
 
     public MyHT(Integer number){
         this.number = number;
         this.elements = new Node[number];
-        this.size = 0;
     }
 
     private Integer hashFunction(String ident){
@@ -28,18 +27,15 @@ public class MyHT {
         if (this.elements[hv] == null){
             Node node = new Node(ident, 0 , null);
             this.elements[hv] = node;
-            this.size++;
             return new Pair<>(hv, 0);
 
         }
         Node current = this.elements[hv];
-        System.out.println("here1");
         while (current.nextNode != null){
             current = current.nextNode;
         }
         Node newNode = new Node(ident, current.index+1, current);
         current.nextNode = newNode;
-        this.size++;
         return new Pair<>(hv,newNode.index);
     }
 
@@ -58,7 +54,7 @@ public class MyHT {
     }
 
     public Integer getSize(){
-        return this.size;
+        return this.number;
     }
 }
 

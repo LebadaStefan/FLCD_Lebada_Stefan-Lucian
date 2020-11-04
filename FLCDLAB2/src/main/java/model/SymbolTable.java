@@ -18,4 +18,6 @@ public class SymbolTable {
     }
 
     public Integer size(){return hashTable.getSize();}
+
+    public Node[] getElements() {return hashTable.getElements();}
 }

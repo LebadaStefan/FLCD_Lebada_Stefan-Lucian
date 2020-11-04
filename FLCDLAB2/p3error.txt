@@ -1,0 +1,8 @@
+int n, 420ind, sum = 0;
+inject n;
+whale(420ind = 0; 420ind <= 2*n; 420ind++){
+inject x;
+sum = sum + x;
+}
+eject(“sum is: );
+eject(sum);
