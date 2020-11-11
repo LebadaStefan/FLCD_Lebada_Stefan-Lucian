@@ -14,7 +14,7 @@ public class MyScanner {
     private List<String> tokens;
     private String givenProgram;
     private SymbolTable symbolTable;
-    private List<PIFElement> pif; // Token + hashcode + position in the symboltable
+    private List<PIFElement> pif; // Token + hashcode + position in the SymbolTable
     private List<String> errors = new ArrayList<>();
 
     public MyScanner(String pathToGivenProgram){
@@ -51,7 +51,7 @@ public class MyScanner {
     }
 
     private Boolean isIdentifier(String token){
-         return token.matches("(^[a-zA-Z][a-zA-Z0-9]*)");
+        return token.matches("(^[a-zA-Z][a-zA-Z0-9]*)");
     }
 
     public void scan(){
@@ -67,15 +67,15 @@ public class MyScanner {
                     List<String> tokensFound = Arrays.asList(currentLine.split(" "));
                     //System.out.println(tokensFound);
                     tokensFound = tokenize(tokensFound);
-                    tokensFound = finalTokenize(tokensFound);
                     //System.out.println(tokensFound);
+                    tokensFound = finalTokenize(tokensFound);
+                    System.out.println(tokensFound);
                     for (String token: tokensFound){
                         if(this.tokens.contains(token)){
                             pif.add(new PIFElement(token,0,-1));
                         }else{
                             if (isIdentifier(token) || isConstant(token)){
                                 Pair<Integer,Integer> position = symbolTable.search(token);
-                                //String whatIs = isIdentifier(token) ? "ID" : "CONST";
                                 String whatType;
                                 if (isIdentifier(token)){
                                     whatType = "ID";
@@ -118,6 +118,7 @@ public class MyScanner {
                 //System.out.println(lineTokens);
                 if (str.contains(separator)){
                     List<String> split = mySplitter(str, separator);
+                    //System.out.println(split);
                     updatedTokens.addAll(split);
                 } else {
                     updatedTokens.add(str);
@@ -149,7 +150,6 @@ public class MyScanner {
             if (ind > 0)
                 if(!string.substring(0,ind).equals(" "))
                     result.add(string.substring(0, ind));
-            //System.out.println(result);
             result.add(tokan);
             string = string.substring(tokan.length() + ind);
             ind = string.indexOf(tokan);
@@ -163,7 +163,7 @@ public class MyScanner {
     private List<String> finalTokenize(List<String> tokens) {
         tokens = equalSign(tokens);
         tokens = stringConstants(tokens);
-        System.out.println(tokens);
+        //System.out.println(tokens);
         return tokens;
     }
 
@@ -229,7 +229,7 @@ public class MyScanner {
 
             printWriter.println(size);
             for (int i = 0; i < size; i++){
-                String line = "";
+                String line = i +  ", ";
                 Node currentNode = elements[i];
                 while (currentNode!=null){
                     line += currentNode.identifier + " - " + currentNode.index + " ; ";

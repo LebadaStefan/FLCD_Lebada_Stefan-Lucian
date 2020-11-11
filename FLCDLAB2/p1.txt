@@ -2,7 +2,7 @@ int a,b,c;
 inject a;
 inject b;
 inject c;
-oare ( a >= b si a >= c ){
+oare (a>=b si a >= c ){
 eject(a);
 }
 oare ( b > a si b > c ){
