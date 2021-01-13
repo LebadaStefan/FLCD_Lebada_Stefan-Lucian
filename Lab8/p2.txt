@@ -1,0 +1,16 @@
+inti n, ind, aux;
+inject n;
+aux = 1;
+oare( n == 0 sau n == 1)
+aux = 0;
+whale(ind = 2; ind <= n/2; ind ++){
+oare (n % ind == 0){
+aux = 0;
+}
+}
+oare ( aux == 1)
+{
+eject("n este prim");
+} altfel {
+eject("n nu este prim");
+}
